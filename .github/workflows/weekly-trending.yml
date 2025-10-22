@@ -6,14 +6,15 @@ on:
     - cron: '0 17 * * 6'
   workflow_dispatch: # 수동 실행 가능
 
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  id-token: write
+
 jobs:
   create-trending-post:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
-      issues: write
-      id-token: write
 
     steps:
       - name: Checkout repository
@@ -95,7 +96,7 @@ jobs:
 
             작업을 시작해주세요!
 
-          claude_args: '--allowed-tools "Bash(git:*)" --allowed-tools "Bash(mkdir:*)" --allowed-tools "WebFetch" --allowed-tools "Write(**/_posts/**/*)"'
+          claude_args: '--allowed-tools "Bash(git:*)" --allowed-tools "Bash(mkdir:*)" --allowed-tools "WebFetch" --allowed-tools "Write"'
 
       - name: Verify Post Created
         run: |
