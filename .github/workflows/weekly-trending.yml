@@ -95,7 +95,7 @@ jobs:
 
             작업을 시작해주세요!
 
-          claude_args: '--allowed-tools "Bash(git:*)" --allowed-tools "WebFetch" --allowed-tools "Write(_posts/**/*)"'
+          claude_args: '--allowed-tools "Bash(git:*)" --allowed-tools "Bash(mkdir:*)" --allowed-tools "WebFetch" --allowed-tools "Write(_posts/**/*)"'
 
       - name: Verify Post Created
         run: |
