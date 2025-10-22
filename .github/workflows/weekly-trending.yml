@@ -24,7 +24,9 @@ jobs:
           fetch-depth: 1
           token: ${{ secrets.BLOG_TOKEN }}
       - name: Reset repo
-        run: git remote set-url origin https://x-access-token:${{ secrets.BLOG_TOKEN }}@github.com/ounols/jekyll-blog.git
+        run: |
+          git remote set-url origin https://x-access-token:${{ secrets.BLOG_TOKEN }}@github.com/ounols/jekyll-blog.git
+          tree
       - name: Generate Weekly Trending Post
         id: claude
         uses: anthropics/claude-code-action@v1
