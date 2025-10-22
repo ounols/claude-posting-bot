@@ -2,8 +2,8 @@ name: Weekly GitHub Trending Post
 
 on:
   schedule:
-    # 매주 일요일 오전 2시(KST)에 실행 (UTC 토요일 17:00)
-    - cron: '0 17 * * 6'
+    # 매주 월요일 오전 8시(KST)에 실행 (UTC 일요일 23:00)
+    - cron: '0 23 * * 0'
   workflow_dispatch: # 수동 실행 가능
 
 permissions:
@@ -17,9 +17,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Jekyll blog repository
         uses: actions/checkout@v4
         with:
+          repository: ounols/jekyll-blog
           fetch-depth: 1
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -39,12 +40,13 @@ jobs:
 
             2. **필터링 기준**
                - 신기술이나 많은 사람들이 궁금해할 만한 내용이 아니면 제외합니다.
-               - 겉만 번지르르하고 실질적 가치가 없는 프로젝트는 제외합니다.
+               - AI기술 관련해서 겉만 번지르르하고 실질적 가치가 없는 프로젝트는 제외합니다.
+               - AI가 아닌 일반 오픈소스 프로젝트라도 유용한 도구나 라이브러리, 흥미롭거나 재밌을만한 프로젝트는 포함할 수 있습니다.
                - 최종적으로 5-10개 정도의 의미있는 레포지토리만 선별합니다.
 
             3. **Jekyll 포스트 작성**
-               - 파일 위치: `_posts/YYYY-MM-DD-github-trending-week-N.md`
-               - 파일명 형식: 오늘 날짜를 사용하여 `2025-10-22-github-trending-week-4.md` 형식
+               - 파일 위치: `_posts/YYYY-MM-DD-YYYYMM-github-trending-week-N.md`
+               - 파일명 형식: 오늘 날짜를 사용하여 `2025-10-22-202510-github-trending-week-4.md` 형식
                - 반드시 한국어로 작성합니다.
                - 이모지는 전문성이 떨어지므로 사용하지 않습니다.
                - 날짜 형식 중 N은 해당 월의 몇 번째 주인지를 나타냅니다 (예: 4는 4주째).
@@ -62,8 +64,8 @@ jobs:
               - AI
               - [관련 기술 태그들]
             pin: false
-            math: false
-            mermaid: false
+            math: [latex가 필요한 경우 true, 아니면 false]
+            mermaid: [머메이드 다이어그램이 필요한 경우 true, 아니면 false]
             ---
             ```
 
@@ -115,7 +117,7 @@ jobs:
 
             9. **커밋 및 푸시**
                - 작성한 포스트 파일을 git add 합니다.
-               - 커밋 메시지: "Add GitHub Trending post for week [N] of [Month] [Year]"
+               - 커밋 메시지 작성 시 lint 규칙을 준수합니다: 예시는 `feat(blog): Add YYYY-MM-github-trending-week-N.md`입니다.
                - main 브랜치에 직접 푸시합니다.
 
             작업을 시작해주세요!
