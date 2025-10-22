@@ -118,7 +118,7 @@ jobs:
             9. **커밋 및 푸시**
                - 작성한 포스트 파일을 git add 합니다.
                - 커밋 메시지 작성 시 lint 규칙을 준수합니다: 예시는 `feat(blog): Add YYYY-MM-github-trending-week-N.md`입니다.
-               - main 브랜치에 직접 푸시합니다.
+               - master 브랜치에 직접 푸시합니다.
 
             작업을 시작해주세요!
 
